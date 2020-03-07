@@ -1,13 +1,13 @@
 import { Table, Column, Model, BelongsTo, ForeignKey } from 'sequelize-typescript'
 
-import User from '../user/user'
+import { User } from './User'
 
 @Table({
   tableName: 'hobby',
   freezeTableName: false,
   timestamps: false,
 })
-export default class Hobby extends Model<Hobby> {
+export class Hobby extends Model<Hobby> {
  
   @Column
   name!: string
