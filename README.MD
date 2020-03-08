@@ -1,8 +1,8 @@
 # branch 설명
-- master
+- master<br>
 sequelize-typescript 를 사용
 
-- sequelize-ts-origin
+- sequelize-ts-origin<br>
 sequelize 자체 typescript로 구현
 
 model은 모두 class를 사용하나
