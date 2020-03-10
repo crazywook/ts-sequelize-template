@@ -1,5 +1,6 @@
 import { User } from './../../database/User'
 import { Hobby } from '../../database/Hobby'
+import {UserDto} from "./types";
 
 export class UserRepository {
 
@@ -22,7 +23,7 @@ export class UserRepository {
     })
   }
 
-  createUser(user: any) {
+  createUser(user: UserDto) {
 
     return this.model.create(user)
   }

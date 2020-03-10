@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import { sequelize, transaction } from '../../persistence/sequelize'
 import { userRepository } from './../../repository/user/index'
-import { User } from './../../repository/user/types'
+import { UserDto } from './../../repository/user/types'
 
 describe('createUserHobbyTransaction.test', () => {
 
@@ -18,7 +18,7 @@ describe('createUserHobbyTransaction.test', () => {
 
     await transaction(async () => {
       console.log('transaction start')
-      const mimi: User = {
+      const mimi: UserDto = {
         name: 'mimi',
         birthday: new Date('1979-10-10'),
       }
