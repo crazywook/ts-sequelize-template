@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "ts-node index.ts"
+    "start": "ts-node index.ts",
+    "build": "tsc -p tsconfig.json"
   },
   "dependencies": {
     "@types/bluebird": "^3.5.30",
