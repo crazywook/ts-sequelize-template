@@ -71,6 +71,7 @@ function onError(error: HttpError) {
       process.exit(1)
       break
     default:
+      console.error('default error', error)
       throw error
   }
 }
@@ -86,5 +87,5 @@ function onListening() {
     ? 'pipe ' + addr
     : 'port ' + addr!.port
   debug('Listening on ' + bind)
-  process.stdout.write(`server listen on: ${bind}`)
+  process.stdout.write(`server listen on: ${bind}\n`)
 }

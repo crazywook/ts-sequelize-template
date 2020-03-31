@@ -1,6 +1,6 @@
 import { User } from './../../database/User'
 import { Hobby } from '../../database/Hobby'
-import {UserDto} from "./types";
+import { UserDto } from "./types"
 
 export class UserRepository {
 
