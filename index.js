@@ -3,19 +3,22 @@
 /**
  * Module dependencies.
  */
-exports.__esModule = true;
-var app_1 = require("./app");
-var debug_1 = require("debug");
-var http_1 = require("http");
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const app_1 = __importDefault(require("./app"));
+const debug_1 = __importDefault(require("debug"));
+const http_1 = __importDefault(require("http"));
 /**
  * Get port from environment and store in Express.
  */
-var port = normalizePort(process.env.PORT || '3000');
-app_1["default"].set('port', port);
+const port = normalizePort(process.env.PORT || '3000');
+app_1.default.set('port', port);
 /**
  * Create HTTP server.
  */
-var server = http_1["default"].createServer(app_1["default"]);
+const server = http_1.default.createServer(app_1.default);
 /**
  * Listen on provided port, on all network interfaces.
  */
@@ -26,7 +29,7 @@ server.on('listening', onListening);
  * Normalize a port into a number, string, or false.
  */
 function normalizePort(val) {
-    var port = parseInt(val, 10);
+    const port = parseInt(val, 10);
     if (isNaN(port)) {
         // named pipe
         return val;
@@ -44,7 +47,7 @@ function onError(error) {
     if (error.syscall !== 'listen') {
         throw error;
     }
-    var bind = typeof port === 'string'
+    const bind = typeof port === 'string'
         ? 'Pipe ' + port
         : 'Port ' + port;
     // handle specific listen errors with friendly messages
@@ -66,10 +69,10 @@ function onError(error) {
  * Event listener for HTTP server "listening" event.
  */
 function onListening() {
-    var addr = server.address();
-    var bind = typeof addr === 'string'
+    const addr = server.address();
+    const bind = typeof addr === 'string'
         ? 'pipe ' + addr
         : 'port ' + addr.port;
-    debug_1["default"]('Listening on ' + bind);
-    process.stdout.write("server listen on: " + bind + "\n");
+    debug_1.default('Listening on ' + bind);
+    process.stdout.write(`server listen on: ${bind}\n`);
 }
