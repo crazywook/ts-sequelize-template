@@ -1,33 +1,62 @@
-import { Param, Body, Get, Post, Put, Delete, JsonController, OnUndefined } from "routing-controllers"
+import { Param, Body, Get, Post, Put, Delete, JsonController } from "routing-controllers"
+import Joi from '@hapi/joi'
+
+const schema = Joi.object({
+  username: Joi.string()
+    .alphanum()
+    .min(3)
+    .max(30)
+    .required(),
+  waitingNum: Joi.number(),
+  password: Joi.string()
+    .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')),
+  repeat_password: Joi.ref('password'),
+  access_token: [
+    Joi.string(),
+    Joi.number()
+  ],
+  birth_year: Joi.number()
+    .integer()
+    .min(1900)
+    .max(2013),
+
+  email: Joi.string()
+    .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } })
+})
 
 @JsonController()
 export class UserController {
 
-  @OnUndefined(404)
   @Get('/users')
   'get user'() {
-      return { message: 'This action returns all users' }
+    return { message: 'This action returns all users' }
   }
 
   @Get('/users/:id')
-  getOne(@Param('id') id: number) {
-      return 'This action returns user #' + id
+  'get unique user'(@Param('id') id: number) {
+    return 'This action returns user #' + id
   }
 
   @Post('/users')
-  post(@Body() user: any) {
+  async 'create users'(@Body() user: any) {
+
+    await schema.validateAsync(user, {
+      allowUnknown: true,
+      convert: false
+    })
     return 'Saving user...'
   }
 
   @Put('/users/:id')
-  put(@Param('id') id: number, @Body() user: any) {
-      return 'Updating a user...'
+  'modify user'(@Param('id') id: number, @Body() user: any) {
+    console.log({ id, user })
+    return 'Updating a user...'
   }
 
   @Delete('/users/:id')
-  remove(@Param('id') id: number) {
-    // throw new Error('test')
-      return 'Removing user...'
+  'remove user'(@Param('id') id: number) {
+    console.log({ id })
+    return 'Removing user...'
   }
 
 }
