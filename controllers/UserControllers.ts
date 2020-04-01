@@ -16,7 +16,7 @@ export class UserController {
 
   @Post('/users')
   post(@Body() user: any) {
-      return 'Saving user...'
+    return 'Saving user...'
   }
 
   @Put('/users/:id')
@@ -26,6 +26,7 @@ export class UserController {
 
   @Delete('/users/:id')
   remove(@Param('id') id: number) {
+    // throw new Error('test')
       return 'Removing user...'
   }
 

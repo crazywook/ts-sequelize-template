@@ -1,0 +1,20 @@
+{
+  "server": {
+    "cors": {
+      "origin": [
+        "http://localhost:8080",
+        "http://localhost:3000"
+      ],
+      "methods": [
+        "GET",
+        "PUT",
+        "DELETE"
+      ],
+      "credential": true
+    }
+  },
+  "database": {
+    "host": "localhost:3000",
+    "port": 3306
+  }
+}
