@@ -45,12 +45,12 @@ export function transaction(fn: () => Promise<any>, options = { propagation: 'RE
 
   try {
 
-      if(options.propagation != 'REQUIRED' ) {
-        return sequelize.transaction(() => fn())
-      }
+    if(options.propagation != 'REQUIRED' ) {
+      return sequelize.transaction(() => fn())
+    }
 
-      const tx = cls.getNamespace(TRANSACTION_NAMESPACE).get('transaction')
-      return tx ? fn() : sequelize.transaction(() => fn())
+    const tx = cls.getNamespace(TRANSACTION_NAMESPACE).get('transaction')
+    return tx ? fn() : sequelize.transaction(() => fn())
   } catch(e) {
 
     return e

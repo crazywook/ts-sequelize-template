@@ -1,7 +1,7 @@
 import { Param, Body, Get, Post, Put, Delete, JsonController } from "routing-controllers"
 import Joi from '@hapi/joi'
 
-const schema = Joi.object({
+const userSchema = Joi.object({
   username: Joi.string()
     .alphanum()
     .min(3)
@@ -40,7 +40,7 @@ export class UserController {
   @Post('/users')
   async 'create users'(@Body() user: any) {
 
-    await schema.validateAsync(user, {
+    await userSchema.validateAsync(user, {
       allowUnknown: true,
       convert: false
     })

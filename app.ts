@@ -7,6 +7,7 @@ import logger from 'morgan'
 import nunjucks from 'nunjucks'
 import { getCors } from './config/cors'
 import { CustomErrorHandler } from './middlewares/error/CustomErrorHandler'
+import { authorizationChecker } from './middlewares/auth/checkRole'
 
 // const isProduction =  process.env.NODE_ENV === 'production'
 
@@ -16,8 +17,8 @@ const app = express()
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'nunjucks')
 nunjucks.configure('views', {
-    autoescape: true,
-    express: app
+  autoescape: true,
+  express: app
 })
 
 app.use(logger('dev'))
@@ -31,6 +32,7 @@ const routingControllersOption: RoutingControllersOptions = {
   middlewares: [
     CustomErrorHandler,
   ],
+  authorizationChecker,
   defaultErrorHandler: false,
 }
 useExpressServer(app, routingControllersOption)
