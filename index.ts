@@ -24,9 +24,10 @@ const server = http.createServer(app)
 /**
  * Listen on provided port, on all network interfaces.
  */
-server.listen(port)
-server.on('error', onError)
-server.on('listening', onListening)
+server
+  .listen(port)
+  .on('error', onError)
+  .on('listening', onListening)
 
 /**
  * Normalize a port into a number, string, or false.
@@ -62,17 +63,17 @@ function onError(error: HttpError) {
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
-    case 'EACCES':
-      console.error(bind + ' requires elevated privileges')
-      process.exit(1)
-      break
-    case 'EADDRINUSE':
-      console.error(bind + ' is already in use')
-      process.exit(1)
-      break
-    default:
-      console.error('default error', error)
-      throw error
+  case 'EACCES':
+    console.error(bind + ' requires elevated privileges')
+    process.exit(1)
+    break
+  case 'EADDRINUSE':
+    console.error(bind + ' is already in use')
+    process.exit(1)
+    break
+  default:
+    console.error('default error', error)
+    throw error
   }
 }
 
