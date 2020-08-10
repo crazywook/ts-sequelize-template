@@ -1,6 +1,7 @@
 import 'reflect-metadata'
 import { useExpressServer, RoutingControllersOptions } from 'routing-controllers'
 import express from 'express'
+import helmet from 'helmet'
 import path from 'path'
 import cookieParser from 'cookie-parser'
 import logger from 'morgan'
@@ -13,9 +14,12 @@ import { authorizationChecker } from './middlewares/auth/checkRole'
 
 const app = express()
 
+// security
+app.use(helmet())
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
-app.set('view engine', 'nunjucks')
+app.set('view engine', nunjucks)
 nunjucks.configure('views', {
   autoescape: true,
   express: app
